@@ -2,7 +2,8 @@
 
 include config.mk
 
-CXXFLAGS+=-std=c++11 -I$(SOURCE_DIR) -I/usr/local/opt/llvm/include
+# CXXFLAGS+=-std=c++11 -I$(SOURCE_DIR) -I/usr/local/opt/llvm/include
+CXXFLAGS+=-std=c++11 -I$(SOURCE_DIR) -I/usr/lib/llvm/include
 
 ifeq ($(CONFIGURATION),debug)
     CXXFLAGS+=-g
@@ -13,7 +14,8 @@ else ifeq ($(CONFIGURATION),release)
 else
     $(error Invalid value for "CONFIGURATION", must be 'release' or 'debug')
 endif
-LDFLAGS+=-ldl -rdynamic -L/usr/local/opt/llvm/lib -lclang
+# LDFLAGS+=-ldl -rdynamic -L/usr/local/opt/llvm/lib -lclang
+LDFLAGS+=-ldl -rdynamic -L/usr/lib/llvm/lib -lclang
 
 ifeq ($(MACHINE),x86)
     CXXFLAGS+=-m32
