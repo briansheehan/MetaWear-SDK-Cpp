@@ -126,8 +126,10 @@ tag:
 
 bindings:
 	$(MAKE) CXX=$(CXX) -C c-binding-generator/ -j4
+	# $(MAKE) APP_NAME=metawearbinding MODULES=metawear/generator \
+    #     CXXFLAGS="-std=c++11 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Werror -Ic-binding-generator/src -Isrc -DMETAWEAR_DLL -DMETAWEAR_DLL_EXPORTS"
 	$(MAKE) APP_NAME=metawearbinding MODULES=metawear/generator \
-        CXXFLAGS="-std=c++11 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Werror -Ic-binding-generator/src -Isrc -DMETAWEAR_DLL -DMETAWEAR_DLL_EXPORTS"
+        CXXFLAGS="-std=c++11 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Ic-binding-generator/src -Isrc -DMETAWEAR_DLL -DMETAWEAR_DLL_EXPORTS"
 	./c-binding-generator/dist/$(CONFIGURATION)/bin/$(MACHINE)/cbinds --cxx-flags "-x c++ -I. -Isrc -DMETAWEAR_DLL -DMETAWEAR_DLL_EXPORTS" \
         --generator-lib dist/$(CONFIGURATION)/lib/$(MACHINE)/libmetawearbinding.$(EXTENSION).$(VERSION_MAJOR) \
         --generator-creator $(CREATOR) -f $(BUILD_DIR)/metawear.h -o $(OUTPUT)
